@@ -11,6 +11,7 @@
 {{ if eq $thumbnailAspectRatio "" }}{{ $thumbnailAspectRatio = "1.5" }}{{ end }}
 {{/* frontmatter */}}
 {{ with $page }}
+  {{ $p := . }}
   {{ with .Params.featureimage }}
     {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
       {{ if site.Params.hotlinkFeatureImage }}
@@ -19,7 +20,7 @@
         {{ $featured = resources.GetRemote . }}
       {{ end }}
     {{ else }}
-      {{ $featured = resources.Get . }}
+      {{ $featured = $p.Resources.Get . }}
     {{ end }}
   {{ end }}
 

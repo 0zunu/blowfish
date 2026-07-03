@@ -9,7 +9,7 @@
   {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
     {{ $featured = resources.GetRemote . }}
   {{ else }}
-    {{ $featured = resources.Get . }}
+    {{ $featured = page.Resources.Get . }}
   {{ end }}
 {{ end }}
 
